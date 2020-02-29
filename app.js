@@ -50,3 +50,14 @@ app.delete('/items/delete/:id', (req, res) => {
 			console.log(err);
 	})
 });
+
+// Consume an item (this is an UPDATE function)
+app.put('/items/consume/:name', (req, res) => {
+	con.query(`UPDATE items SET items.quantity = items.quantity - 1 WHERE items.name = ?`, [req.params.name],(err, rows, fields) => {
+		if(!err)
+			//console.log(rows);
+			res.send(rows);
+		else
+			console.log(err);
+	})
+});
