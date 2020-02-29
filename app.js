@@ -38,3 +38,15 @@ app.get('/items', (req, res) => {
 			console.log(err);
 	})
 });
+
+
+// Delete an item
+app.delete('/items/delete/:id', (req, res) => {
+	con.query('DELETE FROM items WHERE id = ?', [req.params.id],(err, rows, fields) => {
+		if(!err)
+			//console.log(rows);
+			res.send('Deleted!');
+		else
+			console.log(err);
+	})
+});
